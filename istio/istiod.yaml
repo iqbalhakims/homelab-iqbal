@@ -37,7 +37,11 @@ metadata:
     helm.sh/chart: istiod-1.30.1
 data:
   original-values: |-
-    {}
+    {
+      "global": {
+        "hub": "docker.io/istio"
+      }
+    }
   merged-values: |-
     {
       "affinity": {},
@@ -84,7 +88,7 @@ data:
           }
         },
         "externalIstiod": false,
-        "hub": "registry.istio.io/release",
+        "hub": "docker.io/istio",
         "imagePullPolicy": "",
         "imagePullSecrets": [],
         "istioNamespace": "istio-system",
@@ -329,7 +333,7 @@ data:
           }
         },
         "externalIstiod": false,
-        "hub": "registry.istio.io/release",
+        "hub": "docker.io/istio",
         "imagePullPolicy": "",
         "imagePullSecrets": [],
         "istioNamespace": "istio-system",
@@ -3274,7 +3278,7 @@ spec:
       serviceAccountName: istiod
       containers:
         - name: discovery
-          image: "registry.istio.io/release/pilot:1.30.1"
+          image: "docker.io/istio/pilot:1.30.1"
           args:
           - "discovery"
           - --monitoringAddr=:15014
